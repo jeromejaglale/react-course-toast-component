@@ -13,9 +13,6 @@ function ToastPlayground() {
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState('notice');
 
-
-  const [showToast, setShowToast] = React.useState(false);
-
   function handlePopToast(e) {
     e.preventDefault();
 

@@ -18,15 +18,11 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({variant = "notice", show = true, setShow, children}) {
+function Toast({variant = "notice", id, close, children}) {
   const Icon = ICONS_BY_VARIANT[variant];
 
   function handleClose(e) {
-    setShow(false);
-  }
-
-  if( ! show) {
-    return;
+    close(id);
   }
 
   return (
