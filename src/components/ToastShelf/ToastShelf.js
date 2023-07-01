@@ -3,18 +3,11 @@ import React from 'react';
 import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
 
-import {ToastContext} from '../ToastPlayground';
+import {ToastContext} from '../ToastProvider';
 
 function ToastShelf() {
 
-  const {toastList, setToastList} = React.useContext(ToastContext);
-
-  function closeToast(id) {
-    const newToastList = toastList.filter(toast => {
-      return toast.id !== id;
-    });
-    setToastList(newToastList);
-  }
+  const {toastList, setToastList, handlePopToast, closeToast} = React.useContext(ToastContext);
 
   return (
     <ol className={styles.wrapper}>
