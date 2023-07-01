@@ -3,11 +3,15 @@ import React from 'react';
 import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
 
-function ToastShelf({toastList, setToastList}) {
+import {ToastContext} from '../ToastPlayground';
+
+function ToastShelf() {
+
+  const {toastList, setToastList} = React.useContext(ToastContext);
 
   function closeToast(id) {
     const newToastList = toastList.filter(toast => {
-      return toast.id != id;
+      return toast.id !== id;
     });
     setToastList(newToastList);
   }

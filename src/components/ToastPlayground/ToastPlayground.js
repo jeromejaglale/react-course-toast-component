@@ -1,10 +1,11 @@
 import React from 'react';
 
 import Button from '../Button';
-import Toast from '../Toast';
 import ToastShelf from '../ToastShelf';
 
 import styles from './ToastPlayground.module.css';
+
+export const ToastContext = React.createContext();
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
@@ -12,6 +13,9 @@ function ToastPlayground() {
   const [toastList, setToastList] = React.useState([]);
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState('notice');
+
+  const toastListObj = {toastList, setToastList};
+
 
   function handlePopToast(e) {
     e.preventDefault();
@@ -24,13 +28,14 @@ function ToastPlayground() {
   }
   
   return (
+    <ToastContext.Provider value={toastListObj}>
     <div className={styles.wrapper}>
       <header>
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
 
-      <ToastShelf toastList={toastList} setToastList={setToastList}/>
+      <ToastShelf />
 
       <form className={styles.controlsWrapper} onSubmit={handlePopToast}>
         <div className={styles.row}>
@@ -62,7 +67,7 @@ function ToastPlayground() {
                     type="radio"
                     name="variant"
                     value={option}
-                    checked={option == variant}
+                    checked={option === variant}
                     onChange={(e) => {
                       setVariant(e.target.value);
                     }}
@@ -84,6 +89,7 @@ function ToastPlayground() {
         </div>
       </form>
     </div>
+    </ToastContext.Provider>
   );
 }
 
