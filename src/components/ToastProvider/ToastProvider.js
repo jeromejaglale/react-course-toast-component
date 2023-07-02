@@ -11,7 +11,7 @@ function ToastProvider({children}) {
     setToastList(newToastList);
   }
 
-  function closeToast(id) {
+  function dismissToast(id) {
     const newToastList = toastList.filter(toast => {
       return toast.id !== id;
     });
@@ -19,7 +19,7 @@ function ToastProvider({children}) {
   }
 
   return (
-    <ToastContext.Provider value={{toastList, setToastList, createToast, closeToast}}>
+    <ToastContext.Provider value={{toastList, setToastList, createToast, dismissToast}}>
       {children}
     </ToastContext.Provider>
   )

@@ -21,10 +21,6 @@ const ICONS_BY_VARIANT = {
 function Toast({variant = "notice", id, close, children}) {
   const Icon = ICONS_BY_VARIANT[variant];
 
-  function handleClose(e) {
-    close(id);
-  }
-
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>
@@ -33,7 +29,7 @@ function Toast({variant = "notice", id, close, children}) {
       <p className={styles.content}>
         {children}
       </p>
-      <button className={styles.closeButton} onClick={handleClose}>
+      <button className={styles.closeButton} onClick={() => close(id)}>
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
