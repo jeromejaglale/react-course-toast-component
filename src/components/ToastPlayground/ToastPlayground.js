@@ -12,8 +12,17 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 function ToastPlayground() {
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState('notice');
-  const {toastList, setToastList, handlePopToast, closeToast} = React.useContext(ToastContext);
+  const {createToast} = React.useContext(ToastContext);
   
+  function handlePopToast(e) {
+    e.preventDefault();
+
+    createToast(message, variant);
+
+    setMessage('');
+    setVariant('notice');
+  }
+
   return (
     <div className={styles.wrapper}>
       <header>
@@ -23,7 +32,7 @@ function ToastPlayground() {
 
       <ToastShelf />
 
-      <form className={styles.controlsWrapper} onSubmit={(e) => handlePopToast(e, message, variant, setMessage, setVariant)}>
+      <form className={styles.controlsWrapper} onSubmit={handlePopToast}>
         <div className={styles.row}>
           <label
             htmlFor="message"

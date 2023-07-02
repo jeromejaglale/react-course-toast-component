@@ -5,14 +5,10 @@ export const ToastContext = React.createContext();
 function ToastProvider({children}) {
   const [toastList, setToastList] = React.useState([]);
 
-  function handlePopToast(e, message, variant, setMessage, setVariant) {
-    e.preventDefault();
-
+  function createToast(message, variant) {
     const newToast = {message, variant, id: crypto.randomUUID()};
     const newToastList = [newToast, ...toastList];
     setToastList(newToastList);
-    setMessage('');
-    setVariant('notice');
   }
 
   function closeToast(id) {
@@ -23,7 +19,7 @@ function ToastProvider({children}) {
   }
 
   return (
-    <ToastContext.Provider value={{toastList, setToastList, handlePopToast, closeToast}}>
+    <ToastContext.Provider value={{toastList, setToastList, createToast, closeToast}}>
       {children}
     </ToastContext.Provider>
   )

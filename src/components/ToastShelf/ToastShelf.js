@@ -7,7 +7,7 @@ import {ToastContext} from '../ToastProvider';
 
 function ToastShelf() {
 
-  const {toastList, setToastList, handlePopToast, closeToast} = React.useContext(ToastContext);
+  const {toastList, closeToast} = React.useContext(ToastContext);
 
   return (
     <ol className={styles.wrapper}>
