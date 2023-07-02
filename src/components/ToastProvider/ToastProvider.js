@@ -3,6 +3,21 @@ import React from "react";
 export const ToastContext = React.createContext();
 
 function ToastProvider({children}) {
+  React.useEffect(() => {
+    function handleKeyDown(e) {
+      if(e.code === 'Escape') {
+        setToastList([]);
+      }
+      console.log(e.code);
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, []);
+
   const [toastList, setToastList] = React.useState([]);
 
   function createToast(message, variant) {

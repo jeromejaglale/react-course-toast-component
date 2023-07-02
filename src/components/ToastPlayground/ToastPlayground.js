@@ -10,6 +10,7 @@ import styles from './ToastPlayground.module.css';
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
+
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState('notice');
   const {createToast} = React.useContext(ToastContext);
